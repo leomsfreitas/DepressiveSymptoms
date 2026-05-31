@@ -12,17 +12,17 @@ A depressão é um dos transtornos mentais de maior prevalência no mundo, e as 
 
 O corpus do projeto AMIVE é composto por 780 postagens coletadas de páginas públicas de Segredos Universitários do Facebook. As postagens foram anotadas por especialistas em saúde mental segundo 21 sinais de depressão. Neste trabalho, foram consideradas apenas as classes com frequência mínima de 140 ocorrências, resultando em 9 sintomas:
 
-| ID | Sintoma | Ocorrências |
-|----|---------|-------------|
-| C1 | Tristeza/Humor depressivo | 446 |
-| C2 | Desamparo/Prejuízo social/Solidão | 333 |
-| C3 | Suicídio/Auto-extermínio | 262 |
-| C4 | Desvalia/Baixa autoestima | 212 |
-| C5 | Preocupação/Medo/Ansiedade | 203 |
-| C6 | Desesperança | 161 |
-| C7 | Alteração na eficiência/funcionalidade | 146 |
-| C8 | Irritação/Agressividade | 142 |
-| C9 | Cansaço/Desânimo/Fadiga/Perda de energia | 141 |
+| Sintoma | Ocorrências |
+|---------|-------------|
+| Tristeza/Humor depressivo | 446 |
+| Desamparo/Prejuízo social/Solidão | 333 |
+| Suicídio/Auto-extermínio | 262 |
+| Desvalia/Baixa autoestima | 212 |
+| Preocupação/Medo/Ansiedade | 203 |
+| Desesperança | 161 |
+| Alteração na eficiência/funcionalidade | 146 |
+| Irritação/Agressividade | 142 |
+| Cansaço/Desânimo/Fadiga/Perda de energia | 141 |
 
 ## Abordagens Avaliadas
 
