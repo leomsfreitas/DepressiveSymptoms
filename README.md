@@ -65,9 +65,9 @@ Resumo comparativo (macro-F):
 .
 ├── data/
 │   └── lexicons/
-│       ├── bp_liwc2015/          # BP-LIWC2015 — léxico psicolinguístico para português brasileiro
-│       ├── sentilex_pt/          # SentiLex-PT — léxico de polaridade para português
-│       └── wordnet_affect_br/    # WordNetAffectBR — léxico de emoções para português
+│       ├── liwc.csv              # BP-LIWC2015 — léxico psicolinguístico para português brasileiro
+│       ├── sentilex.csv          # SentiLex-PT — léxico de polaridade para português
+│       └── wordnetaffect.csv     # WordNetAffectBR — léxico de emoções para português
 │
 ├── notebooks/
 │   ├── 1_eda.ipynb               # Análise exploratória do corpus
