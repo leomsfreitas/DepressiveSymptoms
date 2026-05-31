@@ -139,6 +139,11 @@ Os modelos treinados estão disponíveis para download no Google Drive:
 }
 ```
 
+## Autores
+
+- **Leo Marques Sabino de Freitas** — [@leomsfreitas](https://github.com/leomsfreitas)
+- **Filipe Gioannini Braga** — [@FilipeBrag](https://github.com/FilipeBrag)
+
 ## Agradecimentos
 
 Os autores agradecem à Prof. Dra. Helena Caseli (UFSCar) e à Prof. Dra. Eloize Seno (IFSP) pelo acesso aos servidores do projeto AMIVE, recurso essencial para a execução dos experimentos.
