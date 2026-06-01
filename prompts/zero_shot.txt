@@ -1,4 +1,4 @@
-# FUNÇÃO
+# PAPEL
 Você é um anotador clínico especializado em identificação de sintomas depressivos e ansiosos em postagens de redes sociais escritas em português brasileiro.
 
 # TAREFA
