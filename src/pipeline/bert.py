@@ -18,7 +18,7 @@ from src.utils.split import multilabel_split
 
 
 @dataclass
-class BertMultitaskConfig:
+class BertMultilabelConfig:
     model_path: str
     label_columns: list[str]
     bert_model: str = "neuralmind/bert-large-portuguese-cased"
@@ -30,8 +30,8 @@ class BertMultitaskConfig:
     seed: int = 21
 
 
-class BertMultitaskPipeline:
-    def __init__(self, config: BertMultitaskConfig):
+class PipelineBertMultilabel:
+    def __init__(self, config: BertMultilabelConfig):
         self.config = config
         self.tokenizer = BertTokenizer.from_pretrained(config.bert_model)
 
@@ -112,7 +112,7 @@ class BertMultitaskPipeline:
     def evaluate(self, trainer: Trainer, df: pd.DataFrame, text_column: str) -> dict:
         dataset = self._make_dataset(df, text_column)
         pred_output = trainer.predict(dataset)
-        preds = (torch.sigmoid(torch.tensor(pred_output.predictions)) > 0.5).int().numpy()
+        preds = (torch.sigmoid(torch.tensor(pred_output.predictions)) > 0.6).int().numpy()
         report = classification_report(
             pred_output.label_ids,
             preds,
@@ -125,7 +125,7 @@ class BertMultitaskPipeline:
     def predict(self, trainer: Trainer, df: pd.DataFrame, text_column: str) -> pd.DataFrame:
         dataset = self._make_dataset(df, text_column, with_labels=False)
         logits = trainer.predict(dataset).predictions
-        preds = (torch.sigmoid(torch.tensor(logits)) > 0.5).int().numpy()
+        preds = (torch.sigmoid(torch.tensor(logits)) > 0.6).int().numpy()
         return pd.DataFrame(preds, columns=self.config.label_columns, index=df.index)
 
     def save(self, trainer: Trainer):
