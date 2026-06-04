@@ -14,24 +14,24 @@
 | AutoGluon (GEP) | **0.7063** | **0.6864** | **0.6882** |
 | AutoGluon (MI80) | 0.7058 | 0.6874 | 0.6867 |
 | BERTimbau (Fine-tuning) | **0.7801** | 0.6401 | 0.6867 |
-| Qwen 2.5 14B (Zero-shot) | 0.6300 | 0.6800 | 0.5900 |
-| Qwen 2.5 14B (Few-shot) | 0.7100 | 0.6100 | 0.6200 |
+| Qwen 2.5 72B (Zero-shot) | 0.5700 | 0.7100 | 0.5800 |
+| Qwen 2.5 72B (Few-shot) | 0.6300 | 0.7000 | 0.6300 |
 
 
 ### F1 por Label
 
 | Label | Baseline | Lex | GE | GEP | MI80 | BERT | Zero-shot | Few-shot |
 |------:|---------:|----:|---:|----:|-----:|-----:|----------:|---------:|
-| Tristeza/Humor depressivo | 0.7417 | 0.7432 | 0.7428 | 0.7519 | 0.7421 | 0.7838 | 0.66 | 0.73 |
-| Desamparo/Solidão | 0.6930 | 0.7646 | 0.6799 | 0.7116 | **0.7763** | **0.8247** | 0.71 | 0.75 |
-| Suicídio/Auto-extermínio | 0.7827 | 0.7824 | **0.8175** | 0.7885 | 0.7824 | 0.8000 | **0.86** | **0.86** |
-| Desvalia/Baixa autoestima | 0.6910 | 0.6083 | 0.5744 | 0.6609 | **0.7287** | 0.7241 | 0.68 | 0.69 |
-| Preocupação/Medo/Ansiedade | **0.8785** | 0.8486 | **0.8785** | 0.8745 | 0.8745 | 0.8475 | 0.76 | 0.77 |
-| Desesperança | 0.5992 | 0.6298 | 0.5298 | 0.5945 | **0.6351** | 0.4615 | 0.48 | 0.50 |
-| Alteração na eficiência/funcionalidade | **0.6291** | 0.5338 | 0.5445 | 0.6040 | 0.5833 | 0.4242 | 0.38 | 0.34 |
-| Irritação/Agressividade | 0.6238 | 0.5727 | 0.5912 | **0.6626** | 0.5919 | 0.6000 | 0.30 | 0.32 |
-| Cansaço/Fadiga/Perda de energia | 0.4794 | 0.4695 | 0.5144 | **0.5454** | 0.4659 | 0.7143 | 0.52 | 0.57 |
-| **Macro** | 0.6798 | 0.6614 | 0.6526 | **0.6882** | 0.6867 | 0.6867 | 0.5900 | 0.6200 |
+| Tristeza/Humor depressivo | 0.7417 | 0.7432 | 0.7428 | 0.7519 | 0.7421 | 0.7838 | 0.67 | 0.77 |
+| Desamparo/Solidão | 0.6930 | 0.7646 | 0.6799 | 0.7116 | **0.7763** | **0.8247** | 0.70 | 0.79 |
+| Suicídio/Auto-extermínio | 0.7827 | 0.7824 | **0.8175** | 0.7885 | 0.7824 | 0.8000 | **0.87** | **0.87** |
+| Desvalia/Baixa autoestima | 0.6910 | 0.6083 | 0.5744 | 0.6609 | **0.7287** | 0.7241 | 0.67 | 0.68 |
+| Preocupação/Medo/Ansiedade | **0.8785** | 0.8486 | **0.8785** | 0.8745 | 0.8745 | 0.8475 | 0.79 | 0.76 |
+| Desesperança | 0.5992 | 0.6298 | 0.5298 | 0.5945 | **0.6351** | 0.4615 | 0.46 | 0.51 |
+| Alteração na eficiência/funcionalidade | **0.6291** | 0.5338 | 0.5445 | 0.6040 | 0.5833 | 0.4242 | 0.36 | 0.35 |
+| Irritação/Agressividade | 0.6238 | 0.5727 | 0.5912 | **0.6626** | 0.5919 | 0.6000 | 0.39 | 0.52 |
+| Cansaço/Fadiga/Perda de energia | 0.4794 | 0.4695 | 0.5144 | **0.5454** | 0.4659 | 0.7143 | 0.32 | 0.42 |
+| **Macro** | 0.6798 | 0.6614 | 0.6526 | **0.6882** | 0.6867 | 0.6867 | 0.5800 | 0.6300 |
 
 
 ## Macro Average
@@ -126,33 +126,33 @@
 | Cansaço/Fadiga/Perda de energia | 0.7143 | 0.7143 | 0.7143 | 21 |
 | **macro avg** | **0.7801** | **0.6401** | **0.6867** | **306** |
 
-### Qwen 2.5 14B (Zero shot)
+### Qwen 2.5 72B (Zero shot)
 
 | classe | precision | recall | f1-score | support |
 |-------:|----------:|-------:|---------:|--------:|
-| Tristeza/Humor depressivo | 0.52 | 0.91 | 0.66 | 446 |
-| Desamparo/Solidão | 0.57 | 0.92 | 0.71 | 333 |
-| Suicídio/Auto-extermínio | 0.82 | 0.90 | 0.86 | 262 |
-| Desvalia/Baixa autoestima | 0.67 | 0.69 | 0.68 | 212 |
-| Preocupação/Medo/Ansiedade | 0.66 | 0.90 | 0.76 | 203 |
-| Desesperança | 0.39 | 0.64 | 0.48 | 161 |
-| Alteração na eficiência/funcionalidade | 0.68 | 0.27 | 0.38 | 146 |
-| Irritação/Agressividade | 0.93 | 0.18 | 0.30 | 142 |
-| Cansaço/Fadiga/Perda de energia | 0.41 | 0.70 | 0.52 | 141 |
-| **macro avg** | **0.63** | **0.68** | **0.59** | **2046** |
+| Tristeza/Humor depressivo | 0.54 | 0.88 | 0.67 | 446 |
+| Desamparo/Solidão | 0.57 | 0.90 | 0.70 | 333 |
+| Suicídio/Auto-extermínio | 0.83 | 0.91 | 0.87 | 262 |
+| Desvalia/Baixa autoestima | 0.61 | 0.76 | 0.67 | 212 |
+| Preocupação/Medo/Ansiedade | 0.70 | 0.91 | 0.79 | 203 |
+| Desesperança | 0.36 | 0.63 | 0.46 | 161 |
+| Alteração na eficiência/funcionalidade | 0.46 | 0.30 | 0.36 | 146 |
+| Irritação/Agressividade | 0.88 | 0.25 | 0.39 | 142 |
+| Cansaço/Fadiga/Perda de energia | 0.20 | 0.87 | 0.32 | 141 |
+| **macro avg** | **0.57** | **0.71** | **0.58** | **2046** |
 
 
-### Qwen 2.5 14B (Few shot)
+### Qwen 2.5 72B (Few shot)
 
 | classe | precision | recall | f1-score | support |
 |-------:|----------:|-------:|---------:|--------:|
-| Tristeza/Humor depressivo | 0.67 | 0.81 | 0.73 | 446 |
-| Desamparo/Solidão | 0.71 | 0.79 | 0.75 | 333 |
-| Suicídio/Auto-extermínio | 0.83 | 0.90 | 0.86 | 262 |
-| Desvalia/Baixa autoestima | 0.76 | 0.64 | 0.69 | 212 |
-| Preocupação/Medo/Ansiedade | 0.73 | 0.82 | 0.77 | 203 |
-| Desesperança | 0.52 | 0.48 | 0.50 | 161 |
-| Alteração na eficiência/funcionalidade | 0.74 | 0.22 | 0.34 | 146 |
-| Irritação/Agressividade | 0.96 | 0.19 | 0.32 | 142 |
-| Cansaço/Fadiga/Perda de energia | 0.50 | 0.67 | 0.57 | 141 |
-| **macro avg** | **0.71** | **0.61** | **0.62** | **2046** |
+| Tristeza/Humor depressivo | 0.75 | 0.79 | 0.77 | 446 |
+| Desamparo/Solidão | 0.79 | 0.79 | 0.79 | 333 |
+| Suicídio/Auto-extermínio | 0.82 | 0.92 | 0.87 | 262 |
+| Desvalia/Baixa autoestima | 0.61 | 0.76 | 0.68 | 212 |
+| Preocupação/Medo/Ansiedade | 0.66 | 0.89 | 0.76 | 203 |
+| Desesperança | 0.43 | 0.64 | 0.51 | 161 |
+| Alteração na eficiência/funcionalidade | 0.55 | 0.26 | 0.35 | 146 |
+| Irritação/Agressividade | 0.77 | 0.39 | 0.52 | 142 |
+| Cansaço/Fadiga/Perda de energia | 0.28 | 0.84 | 0.42 | 141 |
+| **macro avg** | **0.63** | **0.70** | **0.63** | **2046** |

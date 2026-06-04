@@ -42,8 +42,8 @@ Foram avaliadas cinco configurações independentes de *features*:
 | Lex | Proporções de termos negativos, positivos e neutros (BP-LIWC2015, SentiLex-PT, WordNetAffectBR) |
 | MI80 | Combinação de GE + GEP + Lex filtrada por informação mútua (21 *features* selecionadas) |
 
-### 3. Qwen 2.5 14B (LLM)
-Inferência com o modelo [Qwen 2.5](https://huggingface.co/Qwen/Qwen2.5-14B-Instruct) (14B parâmetros) em regime *zero-shot* e *few-shot*, avaliado sobre o corpus completo.
+### 3. Qwen 2.5 72B (LLM)
+Inferência com o modelo [Qwen 2.5](https://huggingface.co/Qwen/Qwen2.5-72B-Instruct-AWQ) (72B parâmetros, quantizado em 4 bits via AWQ) em regime *zero-shot* e *few-shot*, avaliado sobre o corpus completo.
 
 ## Resultados
 
@@ -55,8 +55,8 @@ Resumo comparativo (macro-F):
 |---|---|---|---|---|
 | BERTimbau (*fine-tuning*) | 0.78 | 0.64 | 0.69 | Medio |
 | AutoGluon (GEP — melhor config.) | 0.71 | 0.69 | 0.69 | Baixo |
-| Qwen 2.5 14B (*zero-shot*) | 0.63 | 0.68 | 0.59 | Alto |
-| Qwen 2.5 14B (*few-shot*) | 0.71 | 0.61 | 0.62 | Alto |
+| Qwen 2.5 72B (*zero-shot*) | 0.57 | 0.71 | 0.58 | Alto |
+| Qwen 2.5 72B (*few-shot*) | 0.63 | 0.70 | 0.63 | Alto |
 
 
 ## Estrutura do Repositório
@@ -77,7 +77,7 @@ Resumo comparativo (macro-F):
 │   ├── 3c_feat_selection.ipynb   # Seleção de features por informação mútua (MI80)
 │   ├── 4a_automl.ipynb           # Treinamento e avaliação com AutoGluon
 │   ├── 4b_bert.ipynb             # Fine-tuning e avaliação do BERTimbau
-│   └── 4c_qwen_2.5_14B.ipynb     # Inferência com Qwen 2.5 14B
+│   └── 4c_qwen_2.5_72B.ipynb     # Inferência com Qwen 2.5 72B
 │
 ├── prompts/
 │   ├── few_shot.txt              # Prompt para regime few-shot
