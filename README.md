@@ -1,109 +1,109 @@
-# Detecção de Sinais de Depressão em Redes Sociais
+# Detection of Depression Signs on Social Media
 
-> Comparação de abordagens de PLN para identificação automática de sintomas depressivos em publicações de redes sociais em português brasileiro.
+> Comparison of NLP approaches for automatically identifying depressive symptoms in Brazilian Portuguese social media posts.
 
-Este repositório contém o código, os notebooks e os prompts utilizados no artigo **"Detecção de Sinais de Depressão em Redes Sociais por Meio de Modelos de Linguagem e Recursos de Análise de Sentimentos para o Português Brasileiro"**.
+This repository contains the code, notebooks, and prompts used in the paper **"Detecção de Sinais de Depressão em Redes Sociais por Meio de Modelos de Linguagem e Recursos de Análise de Sentimentos para o Português Brasileiro"**.
 
-## Contexto
+## Background
 
-A depressão é um dos transtornos mentais de maior prevalência no mundo, e as redes sociais tornaram-se espaços de expressão emocional que permitem investigar sinais desse transtorno em larga escala. Este trabalho compara três abordagens de Processamento de Linguagem Natural (PLN) para a identificação automática de sintomas depressivos em publicações em português brasileiro, utilizando o corpus do [projeto AMIVE](https://www.amive.ufscar.br/).
+Depression is one of the most prevalent mental disorders worldwide, and social media has become a space for emotional expression that allows researchers to investigate signs of this disorder at scale. This work compares three Natural Language Processing (NLP) approaches for automatically identifying depressive symptoms in Brazilian Portuguese posts, using the corpus from the [AMIVE project](https://www.amive.ufscar.br/).
 
 ## Corpus
 
-O corpus do projeto AMIVE é composto por 780 postagens coletadas de páginas públicas de Segredos Universitários do Facebook. As postagens foram anotadas por especialistas em saúde mental segundo 21 sinais de depressão. Neste trabalho, foram consideradas apenas as classes com frequência mínima de 140 ocorrências, resultando em 9 sintomas:
+The AMIVE project corpus consists of 780 posts collected from public Facebook "Segredos Universitários" (University Secrets) pages. The posts were annotated by mental health specialists according to 21 signs of depression. In this work, only classes with a minimum frequency of 140 occurrences were considered, resulting in 9 symptoms:
 
-| Sintoma | Ocorrências |
+| Symptom | Occurrences |
 |---------|-------------|
-| Tristeza/Humor depressivo | 446 |
-| Desamparo/Prejuízo social/Solidão | 333 |
-| Suicídio/Auto-extermínio | 262 |
-| Desvalia/Baixa autoestima | 212 |
-| Preocupação/Medo/Ansiedade | 203 |
-| Desesperança | 161 |
-| Alteração na eficiência/funcionalidade | 146 |
-| Irritação/Agressividade | 142 |
-| Cansaço/Desânimo/Fadiga/Perda de energia | 141 |
+| Sadness/Depressed mood | 446 |
+| Helplessness/Social impairment/Loneliness | 333 |
+| Suicide/Self-harm | 262 |
+| Worthlessness/Low self-esteem | 212 |
+| Worry/Fear/Anxiety | 203 |
+| Hopelessness | 161 |
+| Change in efficiency/functionality | 146 |
+| Irritability/Aggressiveness | 142 |
+| Tiredness/Listlessness/Fatigue/Loss of energy | 141 |
 
-## Abordagens Avaliadas
+## Approaches Evaluated
 
-### 1. BERTimbau (*fine-tuning*)
-*Fine-tuning* do [BERTimbau](https://huggingface.co/neuralmind/bert-base-portuguese-cased) para classificação *multilabel* dos 9 sintomas. Divisão: 65% treino / 20% teste / 15% validação.
+### 1. BERTimbau (fine-tuning)
+Fine-tuning of [BERTimbau](https://huggingface.co/neuralmind/bert-base-portuguese-cased) for multilabel classification of the 9 symptoms. Split: 65% train / 20% test / 15% validation.
 
-### 2. AutoML com AutoGluon
-Treinamento automatizado com a biblioteca [AutoGluon](https://auto.gluon.ai/), enriquecido com *features* afetivas derivadas de léxicos de sentimentos e do modelo GoEmotions adaptado para o português. Divisão: 65% treino / 20% teste / 15% validação.
+### 2. AutoML with AutoGluon
+Automated training with the [AutoGluon](https://auto.gluon.ai/) library, enriched with affective features derived from sentiment lexicons and the GoEmotions model adapted for Portuguese. Split: 65% train / 20% test / 15% validation.
 
-Foram avaliadas cinco configurações independentes de *features*:
+Five independent feature configurations were evaluated:
 
-| Configuração | Descrição |
+| Configuration | Description |
 |---|---|
-| Baseline | Apenas texto preprocessado |
-| GE | Vetor completo de probabilidades do GoEmotions (27 emoções) |
-| GEP | Polaridade agregada derivada do GoEmotions |
-| Lex | Proporções de termos negativos, positivos e neutros (BP-LIWC2015, SentiLex-PT, WordNetAffectBR) |
-| MI80 | Combinação de GE + GEP + Lex filtrada por informação mútua (21 *features* selecionadas) |
+| Baseline | Preprocessed text only |
+| GE | Full vector of GoEmotions probabilities (27 emotions) |
+| GEP | Aggregated polarity derived from GoEmotions |
+| Lex | Proportions of negative, positive, and neutral terms (BP-LIWC2015, SentiLex-PT, WordNetAffectBR) |
+| MI80 | Combination of GE + GEP + Lex filtered by mutual information (21 selected features) |
 
 ### 3. Qwen 2.5 72B (LLM)
-Inferência com o modelo [Qwen 2.5](https://huggingface.co/Qwen/Qwen2.5-72B-Instruct-AWQ) (72B parâmetros, quantizado em 4 bits via AWQ) em regime *zero-shot* e *few-shot*, avaliado sobre o corpus completo.
+Inference with the [Qwen 2.5](https://huggingface.co/Qwen/Qwen2.5-72B-Instruct-AWQ) model (72B parameters, 4-bit quantized via AWQ) in zero-shot and few-shot regimes, evaluated on the full corpus.
 
-## Resultados
+## Results
 
-Os resultados detalhados por sintoma e por abordagem estão disponíveis em [`results/README.md`](results/README.md).
+Detailed results by symptom and approach are available in [`results/README.md`](results/README.md).
 
-Resumo comparativo (macro-F):
+Comparative summary (macro-F):
 
-| Abordagem | Precisão | Cobertura | F1 | Custo computacional |
+| Approach | Precision | Recall | F1 | Computational cost |
 |---|---|---|---|---|
-| BERTimbau (*fine-tuning*) | 0.78 | 0.64 | 0.69 | Medio |
-| AutoGluon (GEP — melhor config.) | 0.71 | 0.69 | 0.69 | Baixo |
-| Qwen 2.5 72B (*zero-shot*) | 0.57 | 0.71 | 0.58 | Alto |
-| Qwen 2.5 72B (*few-shot*) | 0.63 | 0.70 | 0.63 | Alto |
+| BERTimbau (fine-tuning) | 0.78 | 0.64 | 0.69 | Medium |
+| AutoGluon (GEP — best config.) | 0.71 | 0.69 | 0.69 | Low |
+| Qwen 2.5 72B (zero-shot) | 0.57 | 0.71 | 0.58 | High |
+| Qwen 2.5 72B (few-shot) | 0.63 | 0.70 | 0.63 | High |
 
 
-## Estrutura do Repositório
+## Repository Structure
 
 ```
 .
 ├── data/
 │   └── lexicons/
-│       ├── liwc.csv              # BP-LIWC2015 — léxico psicolinguístico para português brasileiro
-│       ├── sentilex.csv          # SentiLex-PT — léxico de polaridade para português
-│       └── wordnetaffect.csv     # WordNetAffectBR — léxico de emoções para português
+│       ├── liwc.csv              # BP-LIWC2015 — psycholinguistic lexicon for Brazilian Portuguese
+│       ├── sentilex.csv          # SentiLex-PT — polarity lexicon for Portuguese
+│       └── wordnetaffect.csv     # WordNetAffectBR — emotion lexicon for Portuguese
 │
 ├── notebooks/
-│   ├── 1_eda.ipynb               # Análise exploratória do corpus
-│   ├── 2_preprocessing.ipynb     # Pré-processamento textual
-│   ├── 3a_feat_lexicons.ipynb    # Extração de features com léxicos (Lex)
-│   ├── 3b_feat_ge.ipynb          # Extração de features com GoEmotions (GE e GEP)
-│   ├── 3c_feat_selection.ipynb   # Seleção de features por informação mútua (MI80)
-│   ├── 4a_automl.ipynb           # Treinamento e avaliação com AutoGluon
-│   ├── 4b_bert.ipynb             # Fine-tuning e avaliação do BERTimbau
-│   └── 4c_qwen_2.5_72B.ipynb     # Inferência com Qwen 2.5 72B
+│   ├── 1_eda.ipynb               # Exploratory analysis of the corpus
+│   ├── 2_preprocessing.ipynb     # Text preprocessing
+│   ├── 3a_feat_lexicons.ipynb    # Feature extraction with lexicons (Lex)
+│   ├── 3b_feat_ge.ipynb          # Feature extraction with GoEmotions (GE and GEP)
+│   ├── 3c_feat_selection.ipynb   # Feature selection by mutual information (MI80)
+│   ├── 4a_automl.ipynb           # Training and evaluation with AutoGluon
+│   ├── 4b_bert.ipynb             # Fine-tuning and evaluation of BERTimbau
+│   └── 4c_qwen_2.5_72B.ipynb     # Inference with Qwen 2.5 72B
 │
 ├── prompts/
-│   ├── few_shot.txt              # Prompt para regime few-shot
-│   └── zero_shot.txt             # Prompt para regime zero-shot
+│   ├── few_shot.txt              # Prompt for the few-shot regime
+│   └── zero_shot.txt             # Prompt for the zero-shot regime
 │
 ├── results/
-│   └── README.md                 # Resultados tabulares completos por abordagem e sintoma
+│   └── README.md                 # Full tabular results by approach and symptom
 │
 ├── src/
 │   ├── models/
-│   │   ├── automl.py             # Classe do modelo AutoGluon
-│   │   └── bert.py               # Classe do modelo BERTimbau
+│   │   ├── automl.py             # AutoGluon model class
+│   │   └── bert.py               # BERTimbau model class
 │   ├── pipeline/
-│   │   ├── automl.py             # Pipeline de treino e avaliação AutoGluon
-│   │   ├── bert.py               # Pipeline de treino e avaliação BERTimbau
-│   │   └── llm.py                # Pipeline de inferência com LLM
+│   │   ├── automl.py             # AutoGluon training and evaluation pipeline
+│   │   ├── bert.py               # BERTimbau training and evaluation pipeline
+│   │   └── llm.py                # LLM inference pipeline
 │   └── utils/
-│       ├── features.py           # Carregamento e merge das features com o corpus base
-│       ├── map.py                # Mapeamento de classes e rótulos
-│       ├── prompt.py             # Utilitários de construção de prompts
-│       └── split.py              # Divisão treino/teste/validação
+│       ├── features.py           # Loading and merging features with the base corpus
+│       ├── map.py                # Class and label mapping
+│       ├── prompt.py             # Prompt-building utilities
+│       └── split.py              # Train/test/validation split
 │
 └── requirements.txt
 ```
 
-## Instalação
+## Installation
 
 ```bash
 git clone https://github.com/leomsfreitas/DepressiveSymptoms.git
@@ -111,29 +111,29 @@ cd DepressiveSymptoms
 pip install -r requirements.txt
 ```
 
-## Como Executar
+## How to Run
 
-Os notebooks estão numerados na ordem recomendada de execução:
+The notebooks are numbered in the recommended order of execution:
 
 ```
-2_preprocessing → 3a/3b/3c (features) → 4a/4b/4c (modelos)
+2_preprocessing → 3a/3b/3c (features) → 4a/4b/4c (models)
 ```
-O notebook `1_eda.ipynb` é exploratório e serviu como base para a construção do pipeline, não sendo necessário para reprodução dos experimentos.
+The `1_eda.ipynb` notebook is exploratory and served as a basis for building the pipeline; it is not required to reproduce the experiments.
 
-O acesso ao corpus do projeto AMIVE é necessário para reprodução dos experimentos. Para solicitações de acesso ao corpus, consulte a [página do projeto](https://www.amive.ufscar.br/).
+Access to the AMIVE project corpus is required to reproduce the experiments. For corpus access requests, see the [project page](https://www.amive.ufscar.br/).
 
-## Modelos Disponíveis
+## Available Models
 
-Os modelos treinados estão disponíveis para download no Google Drive:
+The trained models are available for download on Google Drive:
 
-| Modelo | Configuração | Download |
+| Model | Configuration | Download |
 |--------|-------------|----------|
-| BERTimbau (*fine-tuning*) | Classificação *multilabel* dos 9 sintomas | [Download](https://drive.google.com/file/d/1-3XRIsFIGMXtkOcY8TbGL8SkpbT3Fw3r/view?usp=sharing) |
-| AutoGluon | Configuração GEP | [Download](https://drive.google.com/file/d/1vOvNS482qOvEnAwWUederzFYG4Z2KrE3/view?usp=sharing) |
+| BERTimbau (fine-tuning) | Multilabel classification of the 9 symptoms | [Download](https://drive.google.com/file/d/1-3XRIsFIGMXtkOcY8TbGL8SkpbT3Fw3r/view?usp=sharing) |
+| AutoGluon | GEP configuration | [Download](https://drive.google.com/file/d/1vOvNS482qOvEnAwWUederzFYG4Z2KrE3/view?usp=sharing) |
 
-> **Atenção:** para utilizar o modelo AutoGluon com GEP, é necessário extrair a *feature* GEP previamente. O notebook [`3b_feat_ge.ipynb`](notebooks/3b_feat_ge.ipynb) contém o pipeline completo de extração. O modelo espera como entrada um DataFrame com as colunas geradas por esse notebook.
+> **Note:** to use the AutoGluon model with GEP, the GEP feature must be extracted beforehand. The [`3b_feat_ge.ipynb`](notebooks/3b_feat_ge.ipynb) notebook contains the full extraction pipeline. The model expects a DataFrame with the columns generated by that notebook as input.
 
-## Citação
+## Citation
 
 ```
 @misc{freitas2026depressao,
@@ -145,11 +145,11 @@ Os modelos treinados estão disponíveis para download no Google Drive:
 }
 ```
 
-## Autores
+## Authors
 
 - **Leo Marques Sabino de Freitas** — [@leomsfreitas](https://github.com/leomsfreitas)
 - **Filipe Gioannini Braga** — [@FilipeBrag](https://github.com/FilipeBrag)
 
-## Agradecimentos
+## Acknowledgments
 
-Os autores agradecem à Prof. Dra. Helena Caseli (UFSCar) e à Prof. Dra. Eloize Seno (IFSP) pelo acesso aos servidores do projeto AMIVE, recurso essencial para a execução dos experimentos.
+The authors thank Prof. Dr. Helena Caseli (UFSCar) and Prof. Dr. Eloize Seno (IFSP) for access to the AMIVE project servers, an essential resource for carrying out the experiments.
